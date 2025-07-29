@@ -17,14 +17,8 @@ $socios = $socio->getAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Socios</title>
     <link rel="stylesheet" href="../assets/stylev5.css">
-    <script>
-        function confirmarEliminacion(id) {
-            if (confirm("¿Estás seguro de que deseas eliminar este socio?")) {
-                document.getElementById("eliminar-form-" + id).submit();
-            }
-        }
-    </script>
 </head>
+
 <body id="top">
     <?php include "../views/navbar.php"; ?>
     <h2><br>Listado de Socios</h2>

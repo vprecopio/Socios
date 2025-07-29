@@ -15,13 +15,6 @@ if (!isset($_SESSION['usuario']) || $_SESSION['id_rol'] != 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="../assets/stylev5.css">
-    <script>
-        function confirmarEliminacion(id) {
-            if (confirm("¿Estás seguro de que deseas eliminar este socio?")) {
-                document.getElementById("eliminar-form-" + id).submit();
-            }
-        }
-    </script>
 </head>
 
 <body id="top">
