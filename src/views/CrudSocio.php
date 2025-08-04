@@ -31,6 +31,7 @@ $socios = $socio->getAll();
                 <th>Género</th>
                 <th>Correo Electrónico</th>
                 <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -42,13 +43,17 @@ $socios = $socio->getAll();
                     <td><?php echo $s["genero"]; ?></td>
                     <td><?php echo $s["correo_electronico"]; ?></td>
                     <td>
-                    <?php
-                    $fechaOriginal = $s["fecha_nacimiento"];
-                    $fechaFormateada = date("d/m/Y", strtotime($fechaOriginal));
-                    echo $fechaFormateada;
-                    ?>
+                        <?php
+                            $fechaOriginal = $s["fecha_nacimiento"];
+                            $fechaFormateada = date("d/m/Y", strtotime($fechaOriginal));
+                            echo $fechaFormateada;
+                        ?>
+                    </td>
+                    <td>
+                        <a href="FormularioPagoAdmin.php?id_socio=<?php echo $s['id_socio']; ?>" class="btn-pagar">Pagar</a>
                     </td>
                 </tr>
+
             <?php } ?>
         </tbody>
     </table>

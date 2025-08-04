@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 require_once __DIR__ . '/src/Exception.php';
 require_once __DIR__ . '/src/PHPMailer.php';
 require_once __DIR__ . '/src/SMTP.php';
+require_once __DIR__ . '/../../models/ComprobantePDF.php'; 
 
 class Mailer {
     public static function enviarCorreoActivacion($correo, $nombre, $apellido, $token) {
@@ -28,7 +29,7 @@ class Mailer {
 
             // Construcción del enlace de activación
             // Construcción del enlace de activación (CORREGIDO)
-            $url = "http://localhost:8062/controllers/ActivarCuentaController.php?token=" . urlencode($token);
+            $url = "http://149.50.133.15:8062/controllers/ActivarCuentaController.php?token=" . urlencode($token);
 
 
             // Contenido del correo
@@ -65,7 +66,7 @@ class Mailer {
             $mail->setFrom('tu_correo@gmail.com', 'Gestión de Socios');
             $mail->addAddress($correo, "$nombre $apellido");
     
-            $url = "http://localhost:8062/views/RestablecerContra.php?token=" . urlencode($token);
+            $url = "http://149.50.133.15:8062/views/RestablecerContra.php?token=" . urlencode($token);
     
             $mail->isHTML(true);
             $mail->Subject = 'Restablecer contraseña';
@@ -80,6 +81,53 @@ class Mailer {
             error_log("Error al enviar correo de recuperación: {$mail->ErrorInfo}");
         }
     }
-    
 
+    public static function enviarComprobantePago($correo, $nombre, $apellido, $mes, $monto, $medio_pago, $fecha_pago, $id_pago) {
+        $mail = new PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+    
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'emanuelprecopio@gmail.com';
+            $mail->Password   = 'qpnq viux yycy ypvz';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port       = 587;
+    
+            $mail->setFrom('tu_correo@gmail.com', 'Gestión de Socios');
+            $mail->addAddress($correo, "$nombre $apellido");
+    
+            $mail->isHTML(true);
+            $mail->Subject = 'Comprobante de pago - ' . $mes;
+            $mail->Body = "
+                <h2>Comprobante de pago</h2>
+                <p><strong>Nombre:</strong> $nombre $apellido</p>
+                <p><strong>Mes abonado:</strong> $mes</p>
+                <p><strong>Monto:</strong> AR$ $monto</p>
+                <p><strong>Medio de pago:</strong> $medio_pago</p>
+                <p><strong>Fecha:</strong> " . date('d/m/Y H:i', strtotime($fecha_pago)) . "</p>
+                <p>Este comprobante también está adjunto en formato PDF.</p>
+            ";
+    
+            // Crear el PDF
+            $rutaPDF = ComprobantePDF::generar([
+                'id_pago'     => $id_pago,
+                'nombre'      => $nombre,
+                'apellido'    => $apellido,
+                'mes'         => $mes,
+                'monto'       => $monto,
+                'medio_pago'  => $medio_pago,
+                'fecha_pago'  => $fecha_pago
+            ]);
+    
+            $mail->addAttachment($rutaPDF, 'comprobante_pago.pdf');
+    
+            $mail->send();
+    
+        } catch (Exception $e) {
+            error_log("Error al enviar comprobante: {$mail->ErrorInfo}");
+        }
+    }
+    
 }

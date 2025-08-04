@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 29-07-2025 a las 16:49:01
+-- Tiempo de generación: 04-08-2025 a las 23:01:42
 -- Versión del servidor: 8.0.42
 -- Versión de PHP: 8.2.27
 
@@ -89,7 +89,9 @@ CREATE TABLE `pagos` (
   `id_pago` int NOT NULL,
   `id_socio` int NOT NULL,
   `fecha_pago` datetime NOT NULL,
-  `mes` varchar(20) DEFAULT NULL
+  `mes` varchar(20) DEFAULT NULL,
+  `monto` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `medio_pago` varchar(50) NOT NULL DEFAULT 'efectivo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -168,17 +170,22 @@ INSERT INTO `tipo_categoria` (`id_tipo_categoria`, `nombre`) VALUES
 
 CREATE TABLE `tipo_disciplina` (
   `id_tipo_disciplina` int NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `nombre` varchar(50) NOT NULL,
+  `dias` varchar(255) DEFAULT NULL,
+  `horarios` varchar(255) DEFAULT NULL,
+  `sector` varchar(255) DEFAULT NULL,
+  `lugar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_disciplina`
 --
 
-INSERT INTO `tipo_disciplina` (`id_tipo_disciplina`, `nombre`) VALUES
-(1, 'Boxeo'),
-(2, 'Basquet'),
-(3, 'Voley');
+INSERT INTO `tipo_disciplina` (`id_tipo_disciplina`, `nombre`, `dias`, `horarios`, `sector`, `lugar`) VALUES
+(1, 'Boxeo', NULL, NULL, NULL, NULL),
+(2, 'Basquet', NULL, NULL, NULL, NULL),
+(3, 'Voley', NULL, NULL, NULL, NULL),
+(4, 'Natacion', 'Lunes a Viernes', '08:00 a 22:00 hs', 'Polideportivo', 'Calle falsa 123');
 
 --
 -- Índices para tablas volcadas
@@ -254,31 +261,31 @@ ALTER TABLE `tipo_disciplina`
 -- AUTO_INCREMENT de la tabla `activaciones`
 --
 ALTER TABLE `activaciones`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `id_disciplina` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_disciplina` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_login` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_login` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -290,7 +297,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `id_socio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_socio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_categoria`
@@ -302,7 +309,7 @@ ALTER TABLE `tipo_categoria`
 -- AUTO_INCREMENT de la tabla `tipo_disciplina`
 --
 ALTER TABLE `tipo_disciplina`
-  MODIFY `id_tipo_disciplina` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tipo_disciplina` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

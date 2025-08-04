@@ -17,6 +17,7 @@ $nombreUsuario = 'Admin';
         <li><a href="CrearSocio.php">Crear Socio</a></li>
         <li><a href="CrudSocio.php">Listado de Socio</a></li>
         <li><a href="actividades_admin.php">Actividades</a></li>
+        <li><a href="../views/AgregarActividad.php">Agregar Actividad</a></li>
         <li><a href="Pagos_admin.php">Pagos</a></li>
         <li class="user-menu">
             <a href="#" onclick="toggleUserMenu(event)">

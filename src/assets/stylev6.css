@@ -460,3 +460,8 @@ td button {
         max-width: 100%;
     }
 }
+
+.form-container {
+    justify-content: center;
+    align-items: center;
+}

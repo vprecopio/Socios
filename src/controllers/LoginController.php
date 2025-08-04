@@ -17,14 +17,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($contraseña, $user['contra'])) {
-            $_SESSION['usuario'] = $user;
-            $_SESSION['id_rol'] = $user['id_rol']; // Guardamos el rol
+            
+            $stmtSocio = $db->prepare("SELECT nombre, apellido, correo_electronico FROM socios WHERE id_socio = ?");
+            $stmtSocio->execute([$user['id_socio']]);
+            $socio = $stmtSocio->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['usuario'] = [
+                'id_login' => $user['id_login'],
+                'usuario' => $user['usuario'],
+                'id_rol' => $user['id_rol'],
+                'id_socio' => $user['id_socio'],
+                'nombre' => $socio['nombre'] ?? '',
+                'apellido' => $socio['apellido'] ?? '',
+                'correo_electronico' => $socio['correo_electronico'] ?? ''
+            ];
+
+            $_SESSION['id_rol'] = $user['id_rol']; 
             $_SESSION['id_socio'] = $user['id_socio'];
         
             if ($user['id_rol'] == 1) {
-                header("Location: ../views/inicio.php"); // Vista de administrador
+                header("Location: ../views/inicio.php"); 
             } elseif ($user['id_rol'] == 2) {
-                header("Location: ../views/VistaSocio.php"); // Vista para socio
+                header("Location: ../views/VistaSocio.php"); 
             } else {
                 header("Location: ../index.php");
             }

@@ -71,5 +71,11 @@ class Socio {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }    
 
+    public function getById($id_socio) {
+        $stmt = $this->conn->prepare("SELECT * FROM socios WHERE id_socio = ?");
+        $stmt->execute([$id_socio]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }    
+
 }
 ?>
