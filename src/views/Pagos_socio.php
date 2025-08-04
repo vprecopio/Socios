@@ -28,7 +28,7 @@ $mesActual = date('n');
 <head>
     <meta charset="UTF-8">
     <title>Historial de Pagos</title>
-    <link rel="stylesheet" href="../assets/stylev5.css">
+    <link rel="stylesheet" href="../assets/stylev6.css">
     <style>
         table {
             width: 90%;

@@ -30,7 +30,7 @@ $meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
 <head>
     <meta charset="UTF-8">
     <title>Registrar Pago</title>
-    <link rel="stylesheet" href="../assets/stylev5.css">
+    <link rel="stylesheet" href="../assets/stylev6.css">
 </head>
 <body>
 <?php include 'navbar.php'; ?>

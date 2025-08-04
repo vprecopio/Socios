@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['id_rol'] != 2) {
 
 <?php include 'navbar_socio.php'; ?>
 
-<link rel="stylesheet" href="../assets/stylev5.css">
+<link rel="stylesheet" href="../assets/stylev6.css">
 
 <div class="carnet">
     <div class="carnet-flex">

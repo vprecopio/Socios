@@ -24,7 +24,7 @@ if (!$actividad) {
 }
 ?>
 
-<link rel="stylesheet" href="../assets/stylev5.css">
+<link rel="stylesheet" href="../assets/stylev6.css">
 
 <div class="deporte-container">
     <h2><?= htmlspecialchars($actividad['nombre']) ?></h2>

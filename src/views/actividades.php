@@ -10,7 +10,7 @@ $model = new ActividadModel();
 $actividades = $model->obtenerTodasLasActividades();
 ?>
 
-<link rel="stylesheet" href="../assets/stylev5.css">
+<link rel="stylesheet" href="../assets/stylev6.css">
 
 <div class="contenedor-actividades">
     <h2 class="titulo-actividades">Actividades</h2>

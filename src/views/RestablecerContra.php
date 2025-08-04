@@ -26,7 +26,7 @@ $id_socio = $datos['id_socio'];
 <head>
     <meta charset="UTF-8">
     <title>Restablecer Contraseña</title>
-    <link rel="stylesheet" href="../assets/stylev5.css">
+    <link rel="stylesheet" href="../assets/stylev6.css">
 </head>
 <body>
 <main>
